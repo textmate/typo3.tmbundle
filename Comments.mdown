@@ -1,15 +1,5 @@
 ## From Allan Odgaard
 
-Running `Support/bin/validate_uuids.rb` shows this problem:
-
-    UUID Duplicates:
-
-    FA5DC73E-AAE0-4C69-86E1-87B9E0390FD0
-      Bundles/Blogging.tmbundle/Commands/Fetch Post.plist
-      Review/Bundles/TYPO3.tmbundle/Commands/Get TypoScript Setup.tmCommand
-
-This comes from duplicating bundle items on disk. NEVER do that, but if you do, ALWAYS give the duplicate a new UUID.
-
 Running `Support/bin/validate_bundle.rb` TYPO3.tmbundle shows this problem:
 
     keyword.operator
