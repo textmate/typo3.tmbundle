@@ -34,8 +34,6 @@ Menu:
 TypoScript Grammar:
 
 - Invalid top level include key.
-- comment.line scopes need trailing .typoscript
-- Comment rules need $\n? added to the end to extend scope to end-of-line.
 
 [1]: http://macromates.com/wiki/Bundles/StyleGuide
 [2]: http://macromates.com/blog/2006/multi-stroke-key-bindings/
