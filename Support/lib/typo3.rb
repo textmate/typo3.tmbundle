@@ -607,43 +607,6 @@ TEXT
     end
   end
 
-  def to_html
-    # endpoint doesn't matter here so set to something bogus
-    # to prevent TM from asking for one...
-    @endpoint = 'x'
-    format = ENV['TM_SCOPE']
-    doc = "#{self.post['description']}"
-    doc += "#{self.post['mt_text_more']}" if self.post['mt_text_more']
-    if self.headers['link']
-      base = %Q{<base href="#{self.headers['link']}" />}
-    elsif ENV['TM_FILEPATH']
-      filepath = ENV['TM_FILEPATH'].dup
-      filepath.gsub!(/ /, '%20')
-      base = %Q{<base href="file://#{filepath}" />}
-    end
-    html = `. "${TM_SUPPORT_PATH}/lib/webpreview.sh"; html_header Preview Blogging`
-    case format
-      when /\.textile/
-        require ENV['TM_BUNDLE_SUPPORT'] + '/lib/redcloth'
-        html += RedCloth.new(doc).to_html
-      when /\.markdown/
-        require "#{ENV['TM_SUPPORT_PATH']}/lib/bluecloth.rb"
-        require "#{ENV['TM_SUPPORT_PATH']}/lib/rubypants.rb"
-        html += RubyPants.new(BlueCloth.new(doc).to_html).to_html
-      when /\.html/
-        html += doc
-      when /\.text/
-        html += %Q{<div style="white-space: pre">#{doc}</div>}
-    end
-    html += `. "${TM_SUPPORT_PATH}/lib/webpreview.sh"; html_footer`
-    html
-  end
-
-  # Command: Preview
-
-  def preview
-    print to_html()
-  end
 
   # Drag Command: Upload Image
 
