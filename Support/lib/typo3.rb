@@ -444,20 +444,6 @@ TEXT
     result
   end
 
-  def show_post_page
-    begin
-      current_password = self.password
-      self.post = client.getPost(self.post_id, self.username, current_password)
-      if self.publish && link = self.post['permaLink']
-        require "#{ENV['TM_SUPPORT_PATH']}/lib/browser"
-        Browser.load_url(link)
-      end
-      @mw_success = true
-    rescue XMLRPC::FaultException => e
-      # ignore for now?
-    end
-  end
-
   def select_post(posts)
     titles = []
     posts.each { |p| titles.push( '"' + p['title'].gsub(/"/, '\"') + '"' ) }
@@ -508,33 +494,6 @@ TEXT
     nil
   end
 
-  # Command: Post
-
-  def post_or_update
-    if !post['title']
-      filename = ENV['TM_FILENAME'] || ''
-      filename.sub!(/\.[a-z]+$/, '') if filename
-      self.post['title'] = request_title(filename)
-    end
-
-    begin
-      current_password = self.password
-      require "#{ENV['TM_SUPPORT_PATH']}/lib/progress.rb"
-      TextMate.call_with_progress(:title => "Posting to Blog", :message => "Contacting Server “#{@host}”…") do
-        if post_id
-          result = client.editPost(self.post_id, self.username, current_password, self.post, self.publish)
-        else
-          self.post_id = client.newPost(self.site_id, self.username, current_password, self.post, self.publish)
-        end
-        show_post_page()
-      end
-      @mw_success = true
-      TextMate.exit_replace_document(post_to_document())
-    rescue XMLRPC::FaultException => e
-      TextMate.exit_show_tool_tip("Error: #{e.faultString} (#{e.faultCode})")
-    end
-  end
-
   # Command: Fetch
 
   def fetch
@@ -557,16 +516,6 @@ TEXT
       end
     rescue XMLRPC::FaultException => e
       TextMate.exit_show_tool_tip("Error: #{e.faultString} (#{e.faultCode})")
-    end
-  end
-
-  # Command: View
-
-  def view
-    if self.post_id
-      show_post_page()
-    else
-      TextMate.exit_show_tool_tip("A Post ID is required to view the post.")
     end
   end
 
@@ -607,43 +556,6 @@ TEXT
     end
   end
 
-  def to_html
-    # endpoint doesn't matter here so set to something bogus
-    # to prevent TM from asking for one...
-    @endpoint = 'x'
-    format = ENV['TM_SCOPE']
-    doc = "#{self.post['description']}"
-    doc += "#{self.post['mt_text_more']}" if self.post['mt_text_more']
-    if self.headers['link']
-      base = %Q{<base href="#{self.headers['link']}" />}
-    elsif ENV['TM_FILEPATH']
-      filepath = ENV['TM_FILEPATH'].dup
-      filepath.gsub!(/ /, '%20')
-      base = %Q{<base href="file://#{filepath}" />}
-    end
-    html = `. "${TM_SUPPORT_PATH}/lib/webpreview.sh"; html_header Preview Blogging`
-    case format
-      when /\.textile/
-        require ENV['TM_BUNDLE_SUPPORT'] + '/lib/redcloth'
-        html += RedCloth.new(doc).to_html
-      when /\.markdown/
-        require "#{ENV['TM_SUPPORT_PATH']}/lib/bluecloth.rb"
-        require "#{ENV['TM_SUPPORT_PATH']}/lib/rubypants.rb"
-        html += RubyPants.new(BlueCloth.new(doc).to_html).to_html
-      when /\.html/
-        html += doc
-      when /\.text/
-        html += %Q{<div style="white-space: pre">#{doc}</div>}
-    end
-    html += `. "${TM_SUPPORT_PATH}/lib/webpreview.sh"; html_footer`
-    html
-  end
-
-  # Command: Preview
-
-  def preview
-    print to_html()
-  end
 
   # Drag Command: Upload Image
 
