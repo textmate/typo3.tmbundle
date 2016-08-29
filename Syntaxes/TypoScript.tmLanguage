@@ -8,8 +8,6 @@
 	<string>/\*\*|\{\s*$</string>
 	<key>foldingStopMarker</key>
 	<string>\*\*/|^\s*\}</string>
-	<key>include</key>
-	<string>#typo_defined_properties</string>
 	<key>keyEquivalent</key>
 	<string>^~T</string>
 	<key>name</key>
