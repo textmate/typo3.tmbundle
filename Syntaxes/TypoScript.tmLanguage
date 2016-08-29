@@ -72,7 +72,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^[ \t]*)(?=/)</string>
+			<string>(^[ \t]*)(?=//)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -87,7 +87,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>/</string>
+					<string>//</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -99,7 +99,7 @@
 					<key>end</key>
 					<string>\n</string>
 					<key>name</key>
-					<string>comment.line.slash.typoscript</string>
+					<string>comment.line.double-slash.typoscript</string>
 				</dict>
 			</array>
 		</dict>
