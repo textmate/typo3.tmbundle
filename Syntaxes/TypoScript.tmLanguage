@@ -105,6 +105,32 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>/\*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.begin.typoscript</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>The end here is odd because the entire line with */ is a comment, even if after the closing punctuation.</string>
+			<key>end</key>
+			<string>(\*/).*</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.end.typoscript</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>comment.block.typoscript</string>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>(&lt;\s+)</string>
 			<key>beginCaptures</key>
 			<dict>
