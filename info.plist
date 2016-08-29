@@ -10,10 +10,6 @@
 	<string>Language grammar, snippets, and more for &lt;a href="http://www.typo3.org/"&gt;TYPO3 content management framework&lt;/a&gt;.</string>
 	<key>mainMenu</key>
 	<dict>
-		<key>excludedItems</key>
-		<array>
-			<string>1D60B32C-FD59-4976-BD62-4A48AA980119</string>
-		</array>
 		<key>items</key>
 		<array>
 			<string>34B108FD-B157-49C7-9E1E-6E168C2A03E7</string>
