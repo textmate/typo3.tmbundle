@@ -12,10 +12,11 @@
 	<dict>
 		<key>items</key>
 		<array>
-			<string>34B108FD-B157-49C7-9E1E-6E168C2A03E7</string>
 			<string>063E8265-1FC4-47A5-AD7B-3133608578A5</string>
 			<string>A75AADCB-D0AF-4611-9032-FBE378E6B7D9</string>
 			<string>53C56970-85EE-49EF-9AE5-41FF595DA275</string>
+			<string>------------------------------------</string>
+			<string>34B108FD-B157-49C7-9E1E-6E168C2A03E7</string>
 		</array>
 		<key>submenus</key>
 		<dict>
