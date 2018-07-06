@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -36,7 +36,7 @@
 			<key>end</key>
 			<string>(\?&gt;)</string>
 			<key>name</key>
-			<string>meta.tag.preprocessor.xml</string>
+			<string>meta.tag.metadata.processing.xml</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -68,13 +68,13 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.doctype.xml</string>
+					<string>entity.name.tag.xml</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(&gt;)</string>
 			<key>name</key>
-			<string>meta.tag.sgml.doctype.xml</string>
+			<string>meta.tag.metadata.doctype.xml</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -90,7 +90,7 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.tag.entity.xml</string>
+							<string>entity.name.tag.xml</string>
 						</dict>
 						<key>3</key>
 						<dict>
